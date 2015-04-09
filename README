@@ -1,29 +1,23 @@
-AMETER : An Alsa meter plugin for Linux audio software , with a graphical display .
-	
-			http://laugeo.free.fr/ameter.html
+LEDMETER : An Alsa meter plugin for Linux audio software , driving leds.
 
 	This program aims at giving level metering capability to Alsa audio programs 
-that does not have it, and that cannot use Jack/Meterbrige  ( Glame is an example, 
-as arecord/aplay or mplayer ).
+by driving leds in /sys/class/leds.
 	It can be used also for OSS applications (using alsa-oss, aoss
 wrapper and a properly written .asoundrc). 
 
-	It has an overload indicator, which can be resetted by pressing a key.
+Marc Capdeville <m.capdeville@no-log.org>
+Base on ameter-0.43 : http://laugeo.free.fr/ameter.html
 
 Laurent Georget <laugeo@free.fr>
 (This plugin is heavily based on the level meter plugin from  
 Abramo Bagnara <abramo@alsa-project.org>
-(originally with a ncurse display),
-and on Meterbridge from Steve Harris ( http://plugin.org.uk/meterbridge/ ),
-for the SDL display code.)
+(originally with a ncurse display).
 
 Thanks to Andrew Burgess (http://www.cichlid.com) for fixing the aplay problem when interrupting with ctrl+c.
 
 1) Requirements :
 
-	- Alsa ( tested with 1.0.9)
-	- SDL and SDL_image with PNG support: packages should come with your Linux distribution 
-	(tested with version 1.2 (may work with 1.0))
+	- Alsa ( tested with 1.0.25)
 
 	
 2) Compilation :
@@ -34,19 +28,18 @@ Thanks to Andrew Burgess (http://www.cichlid.com) for fixing the aplay problem w
 
 3) Edit  (or create) .asoundrc file in your home directory to have the following lines :
 
-pcm_scope.ameter {
-	type ameter
+pcm_scope.ledmeter {
+	type ledmeter
 }
-pcm_scope_type.ameter {
-	lib /usr/local/lib/libameter.so
+pcm_scope_type.ledmeter {
+	lib /usr/local/lib/libledmeter.so
 }
-pcm.ameter {
+pcm.ledmeter {
 	type meter
 	slave.pcm 'hw:0,0'
 	frequency 50
-	scopes.0 ameter
+	scopes.0 ledmeter
 }
-pcm.dsp0 ameter
 
 
 ( The frequency parameter is the nb of update/sec , 50 is the default value)
@@ -57,22 +50,22 @@ pcm.dsp0 ameter
 	Using Glame: 
 	- In audio preferences:
 		- Set output plugin to alsa_audio_out 
-		- Set output device to ameter
+		- Set output device to ledmeter
 	(This is ok for playing and recording)
 
 	Using aplay/arecord:
-	aplay -D ameter sound.wav 
-	arecord -D ameter soundrec.wav
+	aplay -D ledmeter sound.wav 
+	arecord -D ledmeter soundrec.wav
 	
 
 	Using mplayer:
-	mplayer -ao alsa:device=ameter /tmp/film.avi 	
+	mplayer -ao alsa:device=ledmeter /tmp/film.avi 	
 
 	Using alsa-oss:
         aoss realplay /usr/lib/RealPlayer8/firstrun.rm
 
 
 5) Limitations :
-	- Only one stereo sound card  
+	- Dont work on capture only device
 	
 	
