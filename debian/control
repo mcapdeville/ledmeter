@@ -1,0 +1,17 @@
+Source: ledmeter
+Section: main/sound
+Priority: optional
+Maintainer: Peter Chiocchetti <pch12@myzel.net>
+Build-Depends: debhelper (>= 4.0.0)
+Standards-Version: 3.6.0
+
+Package: ledmeter
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Alsa meter plugin for Linux audio software.
+ .
+ This program aims at giving level metering capability to Linux Alsa
+ audio programs that do not have it (Glame, aplay/arecord or mplayer
+ are examples).	It can be used also for OSS applications like Realplayer
+ (using Alsa OSS Compat library (provides aoss wrapper), and a properly
+ written .asoundrc (example below)).

@@ -1,0 +1,8 @@
+Version 0.1 : ledmeter initial version
+
+Version 0.44 : Debian build
+Version 0.43 : better overload detection (2 consecutives full scale samples)
+Version 0.42 removed uneeded  reference to curses 
+Version 0.41 fixes an error that could prevent  the compilation of the program (Thanks to Florian Schmidt for pointing the problem).
+Version 0.4 fixes the bug when stopping aplay/arecord with ctrl+c  (Thanks to Andrew Burgess)	
+Version 0.3 adds an overload indicator , which can be reset by pressing a key when peak window is selected .
